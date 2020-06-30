@@ -71,7 +71,7 @@ function getStringFromTemplate(firstName, lastName) {
 function extractNameFromTemplate(value) {
     return value.slice(7,-1);
 }
-
+console.log("ji")
 
 /**
  * Returns a first char of the given string.
