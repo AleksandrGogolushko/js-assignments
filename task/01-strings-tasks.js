@@ -226,9 +226,25 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
-}
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    let result = [];
+    let strLowerCase = str.toLowerCase();
+    for (let i = 0; i < str.length; i++) {
+        let letter = alphabet.indexOf(strLowerCase[i]);
+        if (letter == -1) {
+            result.push(str[i]);
+            continue
+        }
+        letter = letter + 13 >= 26 
+            ? alphabet[letter - 13] 
+            : alphabet[letter + 13];
 
+        str[i] == strLowerCase[i] 
+            ? result.push(letter) 
+            : result.push(letter.toUpperCase())
+    }
+    return result.join("")
+}
 /**
  * Returns true if the value is string; otherwise false.
  * @param {string} value
