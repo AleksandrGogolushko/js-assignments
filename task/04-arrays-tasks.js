@@ -183,7 +183,7 @@ function getHead(arr, n) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-   throw new Error('Not implemented');
+   return arr.splice(arr.length-n)
 }
 
 
@@ -208,8 +208,8 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   throw new Error('Not implemented');
-}
+   return arr.reduce((a,b) => a +"\n"+ b)
+  }
 
 /**
  * Transforms the numeric array into the according array of squares:
