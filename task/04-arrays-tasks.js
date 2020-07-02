@@ -317,8 +317,9 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   throw new Error('Not implemented');
-}
+   let filterSortArr = arr.filter(e => typeof e === "number").sort((a,b)=> b-a)
+    return filterSortArr.length != 0 ? filterSortArr[0]: 0
+   }
 
 /** 
  * Sorts digit names
