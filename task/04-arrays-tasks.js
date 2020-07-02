@@ -335,7 +335,18 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   throw new Error('Not implemented');
+   let num = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+   return arr.sort((a, b) => {
+      if (num.indexOf(a) > num.indexOf(b)) {
+         return 1
+      }
+      if (num.indexOf(a) < num.indexOf(b)) {
+         return -1
+      }
+      if (num.indexOf(a) == num.indexOf(b)) {
+         return 0
+      }
+   })
 }
 
 /** 
@@ -351,7 +362,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-   return  arr.length == 0? 0 : arr.reduce((a,b) => a+b)
+   return arr.length == 0 ? 0 : arr.reduce((a, b) => a + b)
 }
 
 /** 
@@ -367,7 +378,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-   return  arr.filter(e => new Boolean(e) == false).length
+   return arr.filter(e => new Boolean(e) == false).length
 }
 
 /**
@@ -401,7 +412,7 @@ function findAllOccurences(arr, item) {
  */
 function toStringList(arr) {
    return arr.join(",")
-  }
+}
 
 
 /**
@@ -429,7 +440,23 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  */
 function sortCitiesArray(arr) {
-   throw new Error('Not implemented');
+   return arr.sort((a, b) => {
+      if (a.country > b.country) {
+         return 1
+      }
+      if (a.country < b.country) {
+         return -1
+      }
+      if (a.country == b.country) {
+         if (a.city > b.city) {
+            return 1
+         }
+         if (a.city < b.city) {
+            return -1
+         }
+         return 0
+      }
+   })
 }
 
 /**
