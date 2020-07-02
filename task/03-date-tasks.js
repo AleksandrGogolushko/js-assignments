@@ -57,19 +57,15 @@ function parseDataFromIso8601(value) {
  *    Date(2012,1,1)    => true
  *    Date(2015,1,1)    => false
  */
-function isLeapYear(date) {
-   let dataFormat = new Date(date)
-   if (dataFormat.getFullYear() % 4 != 0 ){
-       return false
-   }
-   if (dataFormat.getFullYear() % 100 != 0 ){
-       return true
-   }
-   if(dataFormat.getFullYear() % 400 == 0  ){
-       return true
-   }
-   return false
-}
+
+   function isLeapYear(date) {
+      let dataFormat = new Date(date)
+      if (dataFormat.getFullYear() % 4 != 0)  return false;
+      if (dataFormat.getFullYear() % 100 != 0) return true;
+      if (dataFormat.getFullYear() % 400 == 0) return true;
+      return false
+  }
+
 
 
 /**
@@ -88,7 +84,16 @@ function isLeapYear(date) {
  *    Date(2000,1,1,10,0,0),  Date(2000,1,1,15,20,10,453)   => "05:20:10.453"
  */
 function timeSpanToString(startDate, endDate) {
-   throw new Error('Not implemented');
+    let date = new Date(endDate - startDate);
+    let yearsInHours = (date.getUTCFullYear() - 1970) * 365 * 24;
+    let monthInHours = date.getUTCMonth() * 30 * 24;
+    let daysInHours = (date.getUTCDate() - 1) * 24;
+    let hours = date.getUTCHours() + daysInHours + monthInHours + yearsInHours;
+    let h = hours < 10 ? '0' + hours : hours.toString();
+    let m = '0' + date.getUTCMinutes();
+    let s = '0' + date.getUTCSeconds();
+    let ms = '00' + date.getUTCMilliseconds();
+    return `${h}:${m.substr(-2)}:${s.substr(-2)}.${ms.substr(-3)}`;
 }
 
 
