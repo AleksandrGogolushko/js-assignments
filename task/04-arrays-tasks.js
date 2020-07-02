@@ -280,9 +280,9 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   throw new Error('Not implemented');
+   arr.map((e, i) => arr.splice(i, 1, Array(i + 1).fill().map(() => e)));
+   return arr.flat();
 }
-
 
 /** 
  * Returns the 3 largest numbers from the specified array
