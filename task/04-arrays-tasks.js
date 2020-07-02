@@ -38,7 +38,13 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   throw new Error('Not implemented');
+   let result = []
+   for (let i = 0; result.length < len ; i++) {
+       if (i % 2) {
+           result.push(i)
+       }
+   }
+   return result
 }
 
 
