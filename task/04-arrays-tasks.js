@@ -244,9 +244,9 @@ function toArrayOfSquares(arr) {
 function getMovingSum(arr) {
    let result = [];
    arr.reduce((a, b) => {
-       result.push(a + b);
-       return a + b;
-   },0)
+      result.push(a + b);
+      return a + b;
+   }, 0)
    return result;
 }
 /**
@@ -261,7 +261,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   return arr.filter((e,i)=> i%2 != 0)
+   return arr.filter((e, i) => i % 2 != 0)
 }
 
 
@@ -298,8 +298,8 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   arr.sort((a,b)=>b-a)
-   return arr.slice(0,3)
+   arr.sort((a, b) => b - a)
+   return arr.slice(0, 3)
 }
 
 
@@ -317,9 +317,9 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-   let filterSortArr = arr.filter(e => typeof e === "number").sort((a,b)=> b-a)
-    return filterSortArr.length != 0 ? filterSortArr[0]: 0
-   }
+   let filterSortArr = arr.filter(e => typeof e === "number").sort((a, b) => b - a)
+   return filterSortArr.length != 0 ? filterSortArr[0] : 0
+}
 
 /** 
  * Sorts digit names
@@ -351,7 +351,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-   throw new Error('Not implemented');
+   return  arr.length == 0? 0 : arr.reduce((a,b) => a+b)
 }
 
 /** 
