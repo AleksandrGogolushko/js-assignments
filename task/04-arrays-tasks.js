@@ -335,7 +335,7 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   let num = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+   let num = ["zero","one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
    return arr.sort((a, b) => {
       if (num.indexOf(a) > num.indexOf(b)) {
          return 1
