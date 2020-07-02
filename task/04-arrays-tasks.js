@@ -183,7 +183,7 @@ function getHead(arr, n) {
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
 function getTail(arr, n) {
-   return arr.splice(arr.length-n)
+   return arr.splice(arr.length - n)
 }
 
 
@@ -208,8 +208,8 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   return arr.reduce((a,b) => a +"\n"+ b)
-  }
+   return arr.reduce((a, b) => a + "\n" + b)
+}
 
 /**
  * Transforms the numeric array into the according array of squares:
@@ -223,7 +223,7 @@ function toCsvText(arr) {
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-   return arr.map(e => e*e)
+   return arr.map(e => e * e)
 }
 
 
@@ -242,9 +242,13 @@ function toArrayOfSquares(arr) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
 function getMovingSum(arr) {
-   throw new Error('Not implemented');
+   let result = [];
+   arr.reduce((a, b) => {
+       result.push(a + b);
+       return a + b;
+   },0)
+   return result;
 }
-
 /**
  * Returns every second item from the specified array:
  * 
@@ -257,7 +261,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-   throw new Error('Not implemented');
+   return arr.filter((e,i)=> i%2 != 0)
 }
 
 
