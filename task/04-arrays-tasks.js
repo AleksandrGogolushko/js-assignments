@@ -280,21 +280,8 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-   if (arr.length == 0) {
-       return arr
-   }
-   let pre = arr.map((e, i) => {
-       return String(e + " ").repeat(i + 1).split(" ").filter(e => e != "" && e != " ");
-   })
-   return pre.reduce((a, b) => a.concat(b)).map((e) => {
-       if (e == "null") {
-           return null
-       }
-       if (!isNaN(e - 2)) {
-           return Number(e)
-       }
-       return e
-   })
+   arr.map((e, i) => arr.splice(i, 1, Array(i + 1).fill().map(() => e)));
+   return arr.flat();
 }
 
 /** 
