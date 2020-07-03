@@ -334,20 +334,13 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
+
+
 function sortDigitNamesByNumericOrder(arr) {
-   let num = ["zero","one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
-   return arr.sort((a, b) => {
-      if (num.indexOf(a) > num.indexOf(b)) {
-         return 1
-      }
-      if (num.indexOf(a) < num.indexOf(b)) {
-         return -1
-      }
-      if (num.indexOf(a) == num.indexOf(b)) {
-         return 0
-      }
-   })
+   let num = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+   return arr.map(e => num.indexOf(e)).sort((a, b) => a - b).map(e => num[e])
 }
+
 
 /** 
  * Returns the sum of all items in the specified array of numbers
@@ -478,7 +471,12 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+   return (Array(n).fill(Array(n).fill(0))).map((e, i) => e.map((insideE, insideI) => {
+      if (i == insideI) {
+         return insideE = 1
+      }
+      return insideE = 0
+   }))
 }
 
 /**
