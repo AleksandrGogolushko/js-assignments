@@ -564,7 +564,7 @@ function group(array, keySelector, valueSelector) {
  */
 function selectMany(arr, childrenSelector) {
    return arr.map(e => childrenSelector(e)).flat()
- }
+}
 
 
 /**
