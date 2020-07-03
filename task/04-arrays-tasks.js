@@ -281,8 +281,9 @@ function getSecondItems(arr) {
  */
 function propagateItemsByPositionIndex(arr) {
    arr.map((e, i) => arr.splice(i, 1, Array(i + 1).fill().map(() => e)));
-   return arr.flat();
+   return  arr.length > 0 ? arr.reduce((a, b) => a.concat(b)): []
 }
+
 
 /** 
  * Returns the 3 largest numbers from the specified array
