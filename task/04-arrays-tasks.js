@@ -604,9 +604,9 @@ function getElementByIndexes(arr, indexes) {
  */
 function swapHeadAndTail(arr) {
    let length = arr.length;
-   let left = arr.splice(0, arr.length / 2)
+   let left = arr.splice(0,arr.length / 2)
    let right = length % 2 == 0 ? arr.splice(0) : arr.splice(1);
-   return right.concat(arr, left)
+   return [...right, ...arr, ...left]
 }
 
 module.exports = {
