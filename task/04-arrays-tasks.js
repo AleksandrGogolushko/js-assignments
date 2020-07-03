@@ -454,14 +454,12 @@ function sortCitiesArray(arr) {
 
 /**
  * Creates an indentity matrix of the specified size
- * 
  * @param {number} n
  * @return {array}
- * 
  * @example
  *     1  => [[1]]
- *  
  *     2 => [[1,0],
+ * 
  *           [0,1]]
  * 
  *          [[1,0,0,0,0],
@@ -471,12 +469,9 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   return (Array(n).fill(Array(n).fill(0))).map((e, i) => e.map((insideE, insideI) => {
-      if (i == insideI) {
-         return insideE = 1
-      }
-      return insideE = 0
-   }))
+   return (Array(n).fill(Array(n).fill(0)))
+      .map((e, i) => e.map((insideE, insideI) =>
+       i == insideI ? insideE = 1 : insideE = 0));
 }
 
 /**
