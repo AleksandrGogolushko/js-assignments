@@ -281,7 +281,7 @@ function getSecondItems(arr) {
  */
 function propagateItemsByPositionIndex(arr) {
    arr.map((e, i) => arr.splice(i, 1, Array(i + 1).fill().map(() => e)));
-   return  arr.length > 0 ? arr.reduce((a, b) => a.concat(b)): []
+   return arr.length > 0 ? arr.reduce((a, b) => a.concat(b)) : []
 }
 
 
@@ -472,7 +472,7 @@ function sortCitiesArray(arr) {
 function getIdentityMatrix(n) {
    return (Array(n).fill(Array(n).fill(0)))
       .map((e, i) => e.map((insideE, insideI) =>
-      i == insideI ? insideE = 1 : insideE = 0));
+         i == insideI ? insideE = 1 : insideE = 0));
 }
 
 /**
@@ -490,7 +490,7 @@ function getIdentityMatrix(n) {
  */
 function getIntervalArray(start, end) {
    return Array(Math.abs(start - end) + 1).fill()
-         .map((e, i) => start > end ? start - i : start + i)
+      .map((e, i) => start > end ? start - i : start + i)
 }
 
 /**
@@ -505,7 +505,7 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   return  Array.from(new Set(arr))
+   return Array.from(new Set(arr))
 }
 
 /**
@@ -539,7 +539,15 @@ function distinct(arr) {
  *   }
  */
 function group(array, keySelector, valueSelector) {
-   throw new Error('Not implemented');
+   let map = new Map();
+   array.map((e, i) => {
+      let key = keySelector(array[i]);
+      if (map.has(key))
+         map.get(key).push(valueSelector(array[i]));
+      else
+         map.set(key, [valueSelector(array[i])]);
+   })
+   return map;
 }
 
 
