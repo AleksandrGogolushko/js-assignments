@@ -90,7 +90,16 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a, b, c) {
-    throw new Error('Not implemented');
+    if(a+b<=c){
+        return false
+    }
+     if(a+c<=b){
+        return false
+    }
+    if(c+b<=a){
+        return false
+    }
+    return true
 }
 
 
@@ -127,9 +136,22 @@ function isTriangle(a, b, c) {
  *  
  */
 function doRectanglesOverlap(rect1, rect2) {
-    throw new Error('Not implemented');
+    if (rect1.top == rect2.top && rect1.left == rect2.left) {
+        return true
+    }
+    if(rect1.top > rect2.top && rect1.left > rect2.left){
+        if(rect2.width > rect1.left && rect2.height > rect1.top){
+            return true
+        }
+        if(rect1.width > rect2.width && rect2.height>rect1.height){
+            return true
+        }
+    }
+    if (rect1.width > rect2.left && rect1.height > rect2.top ) {
+        return true
+    }
+    return false
 }
-
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
