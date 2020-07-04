@@ -90,13 +90,13 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,10,10 =>  true
  */
 function isTriangle(a, b, c) {
-    if(a+b<=c){
+    if (a + b <= c) {
         return false
     }
-     if(a+c<=b){
+    if (a + c <= b) {
         return false
     }
-    if(c+b<=a){
+    if (c + b <= a) {
         return false
     }
     return true
@@ -139,15 +139,15 @@ function doRectanglesOverlap(rect1, rect2) {
     if (rect1.top == rect2.top && rect1.left == rect2.left) {
         return true
     }
-    if(rect1.top > rect2.top && rect1.left > rect2.left){
-        if(rect2.width > rect1.left && rect2.height > rect1.top){
+    if (rect1.top > rect2.top && rect1.left > rect2.left) {
+        if (rect2.width > rect1.left && rect2.height > rect1.top) {
             return true
         }
-        if(rect1.width > rect2.width && rect2.height>rect1.height){
+        if (rect1.width > rect2.width && rect2.height > rect1.height) {
             return true
         }
     }
-    if (rect1.width > rect2.left && rect1.height > rect2.top ) {
+    if (rect1.width > rect2.left && rect1.height > rect2.top) {
         return true
     }
     return false
@@ -180,7 +180,7 @@ function doRectanglesOverlap(rect1, rect2) {
  *   
  */
 function isInsideCircle(circle, point) {
-    return Math.pow((point.x - circle.center.x),2) + Math.pow((point.y - circle.center.y),2 )< Math.pow(circle.radius,2)
+    return Math.pow((point.x - circle.center.x), 2) + Math.pow((point.y - circle.center.y), 2) < Math.pow(circle.radius, 2)
 }
 
 
@@ -196,7 +196,13 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    let arrStr = str.split("").filter(e => e != " ")
+    for (let i = 0; i < arrStr.length; i++) {
+        if (arrStr.filter(e => e == arrStr[i]).length == 1) {
+            return arrStr[i]
+        }
+    }
+    return null
 }
 
 
@@ -222,7 +228,7 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    return `${isStartIncluded ? "[" : "("}${Math.min(a, b)}, ${Math.max(a, b)}${isEndIncluded ? "]" : ")"}`
 }
 
 
