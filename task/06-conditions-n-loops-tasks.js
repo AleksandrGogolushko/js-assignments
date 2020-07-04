@@ -287,7 +287,20 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-    throw new Error('Not implemented');
+    let result = [];
+    let strCCN = ccn.toString()
+    for (let i = 1; i < strCCN.length + 1; i++) {
+        if ((strCCN.length - 1) % 2 != 0 ? i % 2 == 0 : i % 2 != 0) {
+            result.push(Number(strCCN[i - 1]))
+        } else {
+            if (strCCN[i - 1] * 2 > 9) {
+                result.push(strCCN[i - 1] * 2 - 9)
+            } else {
+                result.push(Number(strCCN[i - 1] * 2))
+            }
+        }
+    }
+    return result.reduce((a, b) => a + b) % 10 == 0
 }
 
 
@@ -306,8 +319,9 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
-}
+    let result =  num.toString().split("").reduce((a,b) => Number(a) + Number(b)) ;
+    return result > 10 ? getDigitalRoot(result) : result
+   }
 
 
 /**
