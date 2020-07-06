@@ -345,10 +345,12 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true 
  */
-function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
-}
 
+    function isBracketsBalanced(str) {
+        let serchElement = /(\[\])|(\(\))|(\{\})|(\<\>)/g;
+        if(str.length == 0)  return true
+        return str.replace(serchElement,"") == str ? false : isBracketsBalanced(str.replace(serchElement,""));
+    }
 
 /**
  * Returns the human readable string of time period specified by the start and end time.
