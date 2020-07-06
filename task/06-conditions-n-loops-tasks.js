@@ -349,7 +349,8 @@ function getDigitalRoot(num) {
     function isBracketsBalanced(str) {
         let serchElement = /(\[\])|(\(\))|(\{\})|(\<\>)/g;
         if(str.length == 0)  return true
-        return str.replace(serchElement,"") == str ? false : isBracketsBalanced(str.replace(serchElement,""));
+        let resultReplace = str.replace(serchElement,"");
+        return resultReplace == str ? false : isBracketsBalanced(resultReplace);
     }
 
 /**
@@ -384,8 +385,21 @@ function getDigitalRoot(num) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+    let s = (endDate - startDate) / 1000;
+    let rounding = num => num > Math.floor(num)+0.5 ? Math.round(num): Math.floor(num);
+    if (s <= 45) return "a few seconds ago";
+    if (s <= 90) return "a minute ago";
+    if (s / 60 <= 45) return `${rounding(s / 60)} minutes ago`;
+    if (s / 60 <= 90) return "an hour ago";
+    if (s / 3600 <= 22) return `${rounding(s / 3600)} hours ago`;
+    if (s / 3600 <= 36) return `a day ago`;
+    if (s / 86400 <= 25) return `${rounding(s / 86400)} days ago`;
+    if (s / 86400 <= 45) return `a month ago`;
+    if (s / 86400 <= 345) return `${rounding(s / 3600 / 24 / 30)} months ago`;
+    if (s / 86400 <= 545) return `a year ago`;
+    if (s / 86400 > 545) return `${rounding(s / 3600 / 24 / 365)} years ago`;
 }
+
 
 
 /**
