@@ -56,7 +56,18 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    yield 0
+    yield 1
+    let last = 0;
+    let next = 1;
+    let fibonachi = 0;
+    while (true) {
+        fibonachi = last + next;
+        last = next;
+        next = fibonachi;
+        yield fibonachi
+    }
+
 }
 
 
@@ -164,5 +175,5 @@ module.exports = {
     depthTraversalTree: depthTraversalTree,
     breadthTraversalTree: breadthTraversalTree,
     mergeSortedSequences: mergeSortedSequences,
-    async               : async
+    async: async
 };
