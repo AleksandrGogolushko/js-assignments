@@ -37,7 +37,6 @@ function* get99BottlesOfBeer() {
         yield `${bottlesOfBeer} bottles of beer on the wall, ${bottlesOfBeer} bottles of beer.`
         yield `Take one down and pass it around, ${bottlesOfBeer - 1} bottles of beer on the wall.`
     }
-    
     yield "2 bottles of beer on the wall, 2 bottles of beer."
     yield "Take one down and pass it around, 1 bottle of beer on the wall."
     yield "1 bottle of beer on the wall, 1 bottle of beer."
