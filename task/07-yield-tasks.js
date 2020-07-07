@@ -33,7 +33,16 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    for (let bottlesOfBeer = 99; bottlesOfBeer > 2; bottlesOfBeer--) {
+        yield `${bottlesOfBeer} bottles of beer on the wall, ${bottlesOfBeer} bottles of beer.`
+        yield `Take one down and pass it around, ${bottlesOfBeer - 1} bottles of beer on the wall.`
+    }
+    yield "2 bottles of beer on the wall, 2 bottles of beer."
+    yield "Take one down and pass it around, 1 bottle of beer on the wall."
+    yield "1 bottle of beer on the wall, 1 bottle of beer."
+    yield "Take one down and pass it around, no more bottles of beer on the wall."
+    yield "No more bottles of beer on the wall, no more bottles of beer."
+    yield "Go to the store and buy some more, 99 bottles of beer on the wall."
 }
 
 
