@@ -191,7 +191,7 @@ function isInsideCircle(circle, point) {
  * @return {string}
  *
  * @example:
- *   'The quick brown fox jumps over the lazy dog' => 'T'
+ *   'The quick bin fox jumps over the lazy dog' => 'T'
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
@@ -239,7 +239,7 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * @return {string}
  *
  * @example:
- * 'The quick brown fox jumps over the lazy dog' => 'god yzal eht revo spmuj xof nworb kciuq ehT'
+ * 'The quick bin fox jumps over the lazy dog' => 'god yzal eht revo spmuj xof nworb kciuq ehT'
  * 'abracadabra' => 'arbadacarba'
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
@@ -319,9 +319,9 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    let result =  num.toString().split("").reduce((a,b) => Number(a) + Number(b)) ;
+    let result = num.toString().split("").reduce((a, b) => Number(a) + Number(b));
     return result > 10 ? getDigitalRoot(result) : result
-   }
+}
 
 
 /**
@@ -346,12 +346,12 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 
-    function isBracketsBalanced(str) {
-        let serchElement = /(\[\])|(\(\))|(\{\})|(\<\>)/g;
-        if(str.length == 0)  return true
-        let resultReplace = str.replace(serchElement,"");
-        return resultReplace == str ? false : isBracketsBalanced(resultReplace);
-    }
+function isBracketsBalanced(str) {
+    let serchElement = /(\[\])|(\(\))|(\{\})|(\<\>)/g;
+    if (str.length == 0) return true
+    let resultReplace = str.replace(serchElement, "");
+    return resultReplace == str ? false : isBracketsBalanced(resultReplace);
+}
 
 /**
  * Returns the human readable string of time period specified by the start and end time.
@@ -386,7 +386,7 @@ function getDigitalRoot(num) {
  */
 function timespanToHumanString(startDate, endDate) {
     let s = (endDate - startDate) / 1000;
-    let rounding = num => num > Math.floor(num)+0.5 ? Math.round(num): Math.floor(num);
+    let rounding = num => num > Math.floor(num) + 0.5 ? Math.round(num) : Math.floor(num);
     if (s <= 45) return "a few seconds ago";
     if (s <= 90) return "a minute ago";
     if (s / 60 <= 45) return `${rounding(s / 60)} minutes ago`;
@@ -472,9 +472,9 @@ function getCommonDirectoryPath(pathes) {
  */
 function getMatrixProduct(m1, m2) {
     let result = Array(m1.length).fill(0).map(e => Array(e))
-    for(let row = 0;row<m1.length;row++){
-        for(let colum = 0;colum<m1.length;colum++){
-            result[row].push(m1[row][0]*m2[0][colum]+m1[row][1]*m2[1][colum]+m1[row][2]*m2[2][colum])
+    for (let i = 0; i < m1.length; i++) {
+        for (let j = 0; j < m1.length; j++) {
+            result[i].push(m1[i][0] * m2[0][j] + m1[i][1] * m2[1][j] + m1[i][2] * m2[2][j])
         }
     }
     return result
@@ -512,7 +512,25 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-    throw new Error('Not implemented');
+    let winPosition = [/[012]/g, /[345]/g, /[678]/g, /[036]/g, /[147]/g, /[258]/g, /[048]/g, /[246]/g];
+    let oPosition = "", xPosition = "";
+    let oMatch = [], xMatch = [];
+    for (let i = 0; i < position.length; i++) {
+        for (let j = 0; j < position.length; j++) {
+            let indexToSequentialNumbers = i + j + (i * 2);
+            if (position[i][j] == "0") {
+                oPosition += indexToSequentialNumbers
+            } else if (position[i][j] == "X") {
+                xPosition += indexToSequentialNumbers
+            }
+        }
+    }
+    for (let i = 0; i < winPosition.length; i++) {
+        xMatch.push(xPosition.match(winPosition[i]))
+        oMatch.push(oPosition.match(winPosition[i]))
+    }
+    return oMatch.some(e => e != null && e.length == 3) ? "0" :
+           xMatch.some(e => e != null && e.length == 3) ? "X" : undefined
 }
 
 
