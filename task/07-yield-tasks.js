@@ -102,19 +102,17 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-    let queue = root.children;
     yield root
-    for (let i = 0; i < queue.length; i++) {
-        if (queue[i].hasOwnProperty("children")) {
-            yield queue[i]
-            let firstInQueue = queue.shift()
-            firstInQueue.children.reverse().forEach(e => queue.unshift(e))
-            i = -1;
+    let queue = root.children.reverse();
+    for (let i = queue.length-1; i >= 0 ; i--) {
+        yield queue[i]
+        if (queue[i].children == undefined) {
+            queue.pop()
         } else {
-            yield queue[i]
-            queue.shift()
-            i = -1;
+            let firstInQueue = queue.pop()
+            firstInQueue.children.reverse().forEach(e => queue.push(e))
         }
+        i = queue.length;
     }
 }
 
@@ -141,17 +139,18 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-    let queue = [];
-    yield root;
-    queue.push(root.children);
-    for (let i = 0; i < queue.length; i++) {
-        for (let j = 0; j < queue[i].length; j++) {
-            yield queue[i][j]
-            if (queue[i][j].hasOwnProperty("children")) {
-                queue.push(queue[i][j].children)
-            }
-        }
-    }
+    // let queue = [];
+    // yield root;
+    // queue.push(root.children);
+    // for (let i = 0; i < queue.length; i++) {
+    //     for (let j = 0; j < queue[i].length; j++) {
+    //         yield queue[i][j]
+    //         if (queue[i][j].hasOwnProperty("children")) {
+    //             queue.push(queue[i][j].children)
+    //         }
+    //     }
+    // }
+     throw new Error('Not implemented');
 }
 
 
