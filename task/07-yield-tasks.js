@@ -106,11 +106,11 @@ function* depthTraversalTree(root) {
     let queue = root.children.reverse();
     for (let i = queue.length-1; i >= 0 ; i--) {
         yield queue[i]
-        if (queue[i].children == undefined) {
-            queue.pop()
-        } else {
+        if (queue[i].children) {
             let firstInQueue = queue.pop()
             firstInQueue.children.reverse().forEach(e => queue.push(e))
+        } else {
+            queue.pop()
         }
         i = queue.length;
     }
