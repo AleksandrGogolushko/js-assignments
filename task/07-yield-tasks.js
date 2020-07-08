@@ -102,7 +102,20 @@ function* getFibonacciSequence() {
  *
  */
 function* depthTraversalTree(root) {
-    throw new Error('Not implemented');
+    let queue = root.children;
+    yield root
+    for (let i = 0; i < queue.length; i++){
+        if(queue[i].hasOwnProperty("children")){
+            yield queue[i]
+            let firstInQueue = queue.shift()
+            firstInQueue.children.reverse().forEach(e => queue.unshift(e))
+            i = -1;
+        }else{
+            yield queue[i]
+            queue.shift()
+            i = -1;
+        }
+    }
 }
 
 
