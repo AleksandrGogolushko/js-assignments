@@ -139,18 +139,17 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-    // let queue = [];
-    // yield root;
-    // queue.push(root.children);
-    // for (let i = 0; i < queue.length; i++) {
-    //     for (let j = 0; j < queue[i].length; j++) {
-    //         yield queue[i][j]
-    //         if (queue[i][j].hasOwnProperty("children")) {
-    //             queue.push(queue[i][j].children)
-    //         }
-    //     }
-    // }
-     throw new Error('Not implemented');
+    yield root;
+    let level = [];
+    level.push(root.children);
+    for (let i = 0; i < level.length; i++) {
+        for (let j = 0; j < level[i].length; j++) {
+            yield level[i][j]
+            if (level[i][j].children) {
+                level.push(level[i][j].children)
+            }
+        }
+    }
 }
 
 
