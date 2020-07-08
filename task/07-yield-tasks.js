@@ -104,13 +104,13 @@ function* getFibonacciSequence() {
 function* depthTraversalTree(root) {
     let queue = root.children;
     yield root
-    for (let i = 0; i < queue.length; i++){
-        if(queue[i].hasOwnProperty("children")){
+    for (let i = 0; i < queue.length; i++) {
+        if (queue[i].hasOwnProperty("children")) {
             yield queue[i]
             let firstInQueue = queue.shift()
             firstInQueue.children.reverse().forEach(e => queue.unshift(e))
             i = -1;
-        }else{
+        } else {
             yield queue[i]
             queue.shift()
             i = -1;
