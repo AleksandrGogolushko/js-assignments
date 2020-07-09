@@ -104,7 +104,7 @@ function* getFibonacciSequence() {
 function* depthTraversalTree(root) {
     yield root
     let queue = root.children.reverse();
-    for (let i = queue.length-1; i >= 0 ; i--) {
+    for (let i = queue.length - 1; i >= 0; i--) {
         yield queue[i]
         if (queue[i].children) {
             let firstInQueue = queue.pop()
@@ -170,13 +170,13 @@ function* mergeSortedSequences(source1, source2) {
     let genOne = source1(); let genTwo = source2();
     let first = genOne.next(); let second = genTwo.next()
     while (!first.done || !second.done) {
-       if(first.done || first.value > second.value){
-           yield second.value
-           second = genTwo.next()
-       }else{
-         yield first.value;
-         first = genOne.next()
-       }
+        if (first.done || first.value > second.value) {
+            yield second.value
+            second = genTwo.next()
+        } else {
+            yield first.value;
+            first = genOne.next()
+        }
     }
 }
 
@@ -196,7 +196,10 @@ function* mergeSortedSequences(source1, source2) {
  *   Most popular implementation of the logic in npm https://www.npmjs.com/package/co
  */
 function async(generator) {
-    throw new Error('Not implemented');
+    let launchedGen = generator()
+    let result = step => step.done ? step.value :
+    step.value.then(resolve => result(launchedGen.next(resolve)))
+    return result(launchedGen.next())
 }
 
 
