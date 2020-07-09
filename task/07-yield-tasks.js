@@ -198,7 +198,7 @@ function* mergeSortedSequences(source1, source2) {
 function async(generator) {
     let launchedGen = generator()
     let result = step => step.done ? step.value :
-    step.value.then(resolve => result(launchedGen.next(resolve)))
+        step.value.then(resolve => result(launchedGen.next(resolve)))
     return result(launchedGen.next())
 }
 
