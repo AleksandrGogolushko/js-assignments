@@ -25,10 +25,10 @@
  *   getComposition(Math.sin, Math.asin)(x) => Math.sin(Math.acos(x))
  *
  */
-function getComposition(f,g) {
+function getComposition(f, g) {
     const result = (x) => f(g(x));
     return result
-  }
+}
 
 
 /**
@@ -92,8 +92,8 @@ function getPolynom() {
  */
 function memoize(func) {
     let data = func()
-    return ()=> data;
- }
+    return () => data;
+}
 
 
 /**
@@ -112,8 +112,15 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-    throw new Error('Not implemented');
+    return () => {
+        for (let i = 0; i < attempts; i++)
+            try {
+                return func()
+            } catch (e) { }
+        return func()
+    }
 }
+
 
 
 /**
