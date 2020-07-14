@@ -17,9 +17,50 @@
  *  ]
  */
 function createCompassPoints() {
-    throw new Error('Not implemented');
-    var sides = ['N','E','S','W'];  // use array of cardinal directions only!
+    var sides = ['N', 'E', 'S', 'W'];  // use array of cardinal directions only!
+    let result = Array(32)
+    function build(start, end, startDegre, endDegre, startposition, endposition) {
+        let midle = startDegre == 270 || startDegre == 90 ? end + start : start + end;
+        let midleDegre = Number((startDegre + 45).toFixed(2));
+        let midlePosition = endposition - 4;
+        for (let i = startDegre, k = startposition; k < startposition + 8; i += 11.250, k++) {
+            switch (true) {
+                case k == startposition:
+                    result[k] = { abbreviation: start, azimuth: i }
+                    break
+                case k == endposition:
+                    result[k] = { abbreviation: end, azimuth: Number(i.toFixed(2)) }
+                    break
+                case k == midlePosition:
+                    result[k] = { abbreviation: midle, azimuth: Number(i.toFixed(2)) }
+                    break
+                case k % 2 != 0:
+                    if (k - 1 == startposition) {
+                        result[k] = { abbreviation: start + "b" + end, azimuth: Number(i.toFixed(2)) }
+                        result[endposition - 1] = { abbreviation: end + "b" + start, azimuth: Number((endDegre - 11.250).toFixed(2)) }
+                    }
+                    if (k == midlePosition - 1) {
+                        result[k] = { abbreviation: midle + "b" + start, azimuth: Number(i.toFixed(2)) }
+                        result[k + 2] = { abbreviation: midle + "b" + end, azimuth: Number((midleDegre + 11.250).toFixed(2)) }
+                    }
+                    break
+                default:
+                    if (k == midlePosition - 2) {
+                        result[k] = { abbreviation: start + midle, azimuth: Number(i.toFixed(2)) }
+                    }
+                    if (k == midlePosition + 2) {
+                        result[k] = { abbreviation: end + midle, azimuth: Number(i.toFixed(2)) }
+                    }
+            }
+        }
+    }
+    build(sides[0], sides[1], 0, 90, 0, 8)
+    build(sides[1], sides[2], 90, 180, 8, 16)
+    build(sides[2], sides[3], 180, 270, 16, 24)
+    build(sides[3], sides[0], 270, 360, 24, 32)
+    return result
 }
+
 
 
 /**
@@ -141,9 +182,9 @@ function extractRanges(nums) {
 }
 
 module.exports = {
-    createCompassPoints : createCompassPoints,
-    expandBraces : expandBraces,
-    getZigZagMatrix : getZigZagMatrix,
-    canDominoesMakeRow : canDominoesMakeRow,
-    extractRanges : extractRanges
+    createCompassPoints: createCompassPoints,
+    expandBraces: expandBraces,
+    getZigZagMatrix: getZigZagMatrix,
+    canDominoesMakeRow: canDominoesMakeRow,
+    extractRanges: extractRanges
 };
