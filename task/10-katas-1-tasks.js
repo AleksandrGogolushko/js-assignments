@@ -38,7 +38,7 @@ function createCompassPoints() {
                     if (k - 1 == startposition) {
                         result[k] = { abbreviation: start + "b" + end, azimuth: Number(i.toFixed(2)) }
                         result[endposition - 1] = { abbreviation: end + "b" + start, azimuth: Number((endDegre - 11.250).toFixed(2)) }
-                    }else if (k == midlePosition - 1) {
+                    } else if (k == midlePosition - 1) {
                         result[k] = { abbreviation: midle + "b" + start, azimuth: Number(i.toFixed(2)) }
                         result[k + 2] = { abbreviation: midle + "b" + end, azimuth: Number((midleDegre + 11.250).toFixed(2)) }
                     }
