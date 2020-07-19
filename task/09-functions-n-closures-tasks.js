@@ -65,8 +65,8 @@ function getPowerFunction(exponent) {
  *   getPolynom(8)     => y = 8
  *   getPolynom()      => null
  */
-function getPolynom() {
-    let arg = arguments;
+function getPolynom(...args) {
+    let arg = args
     return function (x) {
         let result = 0;
         for (let i = 0; i < arg.length; i++) {
@@ -113,10 +113,11 @@ function memoize(func) {
  */
 function retry(func, attempts) {
     return () => {
-        for (let i = 0; i < attempts; i++)
+        for (let i = 0; i < attempts; i++) {
             try {
                 return func()
             } catch (e) { }
+        }
         return func()
     }
 }
@@ -150,7 +151,7 @@ function logger(func, logFunc) {
     return function () {
         let arg = Array.from(arguments).map(e => JSON.stringify(e)).join()
         logFunc(`${func.name}(${arg}) starts`)
-        let callFunc = func.apply(null,arguments)
+        let callFunc = func.apply(null, arguments)
         logFunc(`${func.name}(${arg}) ends`)
         return callFunc
     }
@@ -170,12 +171,12 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(fn){
-    let arg = Array.from(arguments).filter((e,i)=> i != 0)
-   return function(){
-       let allArg = arg.concat(Array.from(arguments))
-       return fn(...allArg)
-   }
+function partialUsingArguments(fn) {
+    let arg = Array.from(arguments).filter((e, i) => i != 0)
+    return function () {
+        let allArg = arg.concat(Array.from(arguments))
+        return fn(...allArg)
+    }
 }
 
 
