@@ -66,11 +66,10 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom(...args) {
-    let arg = args
     return function (x) {
         let result = 0;
-        for (let i = 0; i < arg.length; i++) {
-            result += arg[i] * Math.pow(x, arg.length - i - 1)
+        for (let i = 0; i < args.length; i++) {
+            result += args[i] * Math.pow(x, args.length - i - 1)
         }
         return result
     }
@@ -148,10 +147,10 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-    return function () {
-        let arg = Array.from(arguments).map(e => JSON.stringify(e)).join()
+    return function (...args) {
+        let arg = JSON.stringify(args).slice(1, -1);
         logFunc(`${func.name}(${arg}) starts`)
-        let callFunc = func.apply(null, arguments)
+        let callFunc = func.apply(null, args)
         logFunc(`${func.name}(${arg}) ends`)
         return callFunc
     }
